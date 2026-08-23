@@ -20,23 +20,44 @@ Wolf.display_info()
 Wolf.feed()
 print(Wolf.happiness)
 
-class carnivorous_animal(Animal):
-    def __init__(self , color ,Animal_name, health ,happiness ):
-        super().__init__(Animal_name ,health ,happiness)
-        self.color = color
+class Lion(Animal):
+    def __init__(self, name, health=50, happiness=50, mane_color="golden"):
+        super().__init__(name, health, happiness)
+        self.mane_color = mane_color
 
     def feed(self):
         self.health += 10
         self.happiness += 15
-        return self 
-    
-    def display_info(self):
-        print(f"{self.color}, {self.name}, {self.health}, {self.happiness},")
         return self
-        
-Lion = carnivorous_animal("orange","Lion", 50 , 40)
-Lion.feed()
-Lion.display_info()
+
+    def display_info(self):
+        print(f"{self.name} (Lion), Mane: {self.mane_color}, Health: {self.health}, Happiness: {self.happiness}")
+        return self
+
+
+class Tiger(Animal):
+    def __init__(self, name, health=50, happiness=50, stripes=10):
+        super().__init__(name, health, happiness)
+        self.stripes = stripes
+
+    def feed(self):
+        self.health += 12
+        self.happiness += 10
+        return self
+
+    def display_info(self):
+        print(f"{self.name} (Tiger), Stripes: {self.stripes}, Health: {self.health}, Happiness: {self.happiness}")
+        return self
+
+
+class Bear(Animal):
+    def __init__(self, name, health=50, happiness=50, fur_color="brown"):
+        super().__init__(name, health, happiness)
+        self.fur_color = fur_color
+
+    def display_info(self):
+        print(f"{self.name} (Bear), Fur: {self.fur_color}, Health: {self.health}, Happiness: {self.happiness}")
+        return self
 
 class Zoo:
     def __init__(self, zoo_name):
@@ -46,10 +67,16 @@ class Zoo:
     def add_animal(self , animal):
         self.animals.append(animal)
         return self
-    
-my_zoo = Zoo("my_zoo")
-my_zoo.add_animal(Wolf).add_animal(Lion)
 
-#لطباعة معلومات الحيوانات داخل zoo
-for animal in my_zoo.animals:
-    animal.display_info()
+    def print_all_info(self):
+        print(f"{self.zoo_name}")
+        for animal in self.animals:
+            animal.display_info()
+    
+zoo1 = Zoo("My Zoo")
+
+zoo1.add_animal(Lion("Simba"))
+zoo1.add_animal(Tiger("Shebna"))
+zoo1.add_animal(Bear("Baloo"))
+
+zoo1.print_all_info()
